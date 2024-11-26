@@ -1,3 +1,10 @@
 node_modules
 selectors.cy.js
 spec.cy.js
+assertions.cy.js
+cart_functionalities.cy.js
+examples.cy.JS
+practices.cy.js
+task1.1.cy.js
+task1.cy.js
+
