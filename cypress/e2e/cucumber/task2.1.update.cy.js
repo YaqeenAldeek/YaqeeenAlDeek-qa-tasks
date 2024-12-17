@@ -31,4 +31,27 @@ describe('Cart Functionalities', () => {
         cy.get(".cart-price > .price").last().should("contain", '272.00')                                           //   assertion the price field updated 
         cy.get(".totals > .amount > .price").should("contain", '272')                                                   //   assertion  the price filed in summary cart updated                               
     });
-});
+
+
+         ///////////////// update correct solution 
+
+         before(() => {
+     cy.visit('https://magento.softwaretestingboard.com/'); // visit the website
+        cy.get('#search').type('shirt{enter}');
+        cy.get('.product-item-info').eq(1).click();
+        cy.get('.swatch-option').eq(1).click(); //  choose the size of the shirt
+        cy.get('.swatch-option').eq(5).click(); // choose the color of the shirt
+        cy.get('#qty').clear().type('2'); // clear the quantity field value and put the value equal 2
+        cy.get('#product-addtocart-button').click(); // click on Add to cart button
+      });
+      it.only('Validate that the user can update products from the shopping cart', () => {
+       cy.wait(3000);
+        cy.get('.minicart-wrapper').click(); // click on the showcart
+        cy.wait(3000);
+        cy.get('.action.viewcart').click();
+        cy.get('.input-text.qty').clear().type('4'); //   clear the qty text field and enter the value 4
+        cy.get('.action.update').click();
+  
+       });
+  });
+ 
