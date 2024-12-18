@@ -30,3 +30,25 @@ describe("Reviews on product page", ()=>{
     })
 })
 
+
+// correct answer should be :
+describe('Reviews on product page', () => {
+  it('validate that the user can submit a review on the product page', () => {
+    cy.visit('https://magento.softwaretestingboard.com/radiant-tee.html');
+    cy.get('.action.add').click(); // click on 'Add Your Review' text
+    cy.get('.legend.review-legend').should('contain', "You're reviewing:");
+    cy.get('[for="nickname_field"]').should('contain', 'Nickname');
+    cy.get('[for="summary_field"]').should('contain', 'Summary');
+    cy.get('[for="review_field"]').should('contain', 'Review');
+    cy.get('.action.submit.primary').should('contain', 'Submit Review');
+    cy.get('.rating-1').should('be.visible');
+    cy.get('.rating-2').should('be.visible');
+    cy.get('.rating-3').should('be.visible');
+    cy.get('.rating-5').should('be.visible');
+    cy.get('[for="review_field"]').type('High quality products');
+    cy.get('.actions-primary').click();
+    cy.get('.message-success').should(
+      'have.attr',
+      'data-bind',
+      "attr: {\n            class: 'message-' + message.type + ' ' + message.type + ' message',\n            'data-ui-id': 'message-' + message.type\n        }"
+    );
